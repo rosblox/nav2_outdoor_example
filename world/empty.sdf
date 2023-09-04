@@ -27,7 +27,6 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
 
-
     <light type="directional" name="sun">
       <cast_shadows>true</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
