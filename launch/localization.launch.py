@@ -35,7 +35,11 @@ def generate_launch_description():
             "publish_filtered_gps": False,
             "broadcast_utm_transform": False,
             "use_simtime": True,
-        }])
+        }],
+        remappings=[
+            ('/odometry/filtered', '/odom'),
+        ]
+        )
 
     ukf_localization_node = Node(
         package='robot_localization',
@@ -43,7 +47,11 @@ def generate_launch_description():
         name='ukf_node',
         output='screen',
         respawn=True,
-        parameters=[os.path.join(pkg_share, 'config/ukf.yaml')])
+        parameters=[os.path.join(pkg_share, 'config/ukf.yaml')],
+        remappings=[
+            ('/odometry/filtered', '/odom'),
+        ]
+        )
 
     return LaunchDescription(
         [
