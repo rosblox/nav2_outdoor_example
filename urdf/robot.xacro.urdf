@@ -145,7 +145,7 @@
 
         </visual>
         <inertial>
-            <origin xyz="0.554283 0 1.0" rpy="0 0 0"/>
+            <origin xyz="0.554283 0 1.0" rpy="0 0 1.57"/>
             <mass value="0.005"/>
             <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
         </inertial>
@@ -206,6 +206,7 @@
             <update_rate>5.0</update_rate>
             <visualize>true</visualize>
             <topic>imu</topic>
+            <frame_id>imu_link</frame_id>
             <ignition_frame_id>imu_link</ignition_frame_id>
         </sensor>
     </gazebo>
@@ -220,11 +221,12 @@
         </sensor>
     </gazebo>
     <gazebo>
-
         <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
             <parameters>$(find nav2_outdoor_example)/config/diff_drive_controller_velocity.yaml</parameters>
+            <ros>
+                <remapping>/diff_drive_base_controller/cmd_vel_unstamped:=/cmd_vel</remapping>
+            </ros>
         </plugin>
-
     </gazebo>
 
 </robot>

@@ -54,17 +54,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    relay = Node(
-        package='topic_tools',
-        executable='relay',
-        arguments=['/cmd_vel', '/diff_drive_base_controller/cmd_vel_unstamped'],
-        output='screen'
-    )
-
-
-
-
-
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -84,20 +73,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    # bridge = Node(
-    #     package='ros_gz_bridge',
-    #     executable='parameter_bridge',
-    #     arguments=['/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
-    #                '/gps/fix@sensor_msgs/msg/NavSatFix@gz.msgs.NavSat', 
-    #                '/imu@sensor_msgs/msg/Imu@gz.msgs.IMU',
-    #                ],
-    #     output='screen'
-    # )
-
-
-
-
-
     return LaunchDescription(
         [
             robot_state_publisher_node,
@@ -116,7 +91,6 @@ def generate_launch_description():
                 )
             ),
             bridge,
-            relay,
         ]
     )
 
