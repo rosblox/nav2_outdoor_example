@@ -210,7 +210,7 @@
             <ignition_frame_id>imu_link</ignition_frame_id>
             <imu>
                 <orientation_reference_frame>
-                <localization>ENU</localization>
+                    <localization>ENU</localization>
                 </orientation_reference_frame>
             </imu>
         </sensor>
