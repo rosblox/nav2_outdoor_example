@@ -134,10 +134,10 @@ local_costmap:
       robot_base_frame: base_link
       use_sim_time: False
       rolling_window: true
-      width: 3
-      height: 3
+      width: 5
+      height: 5
       resolution: 0.05
-      footprint: "[ [1.21, 0.895], [1.21, -0.895], [-1.21, -0.895], [-1.21, 0.895] ]"
+      footprint: "[ [0.71, 0.895], [0.71, -0.895], [-1.71, -0.895], [-1.71, 0.895] ]"
       plugins: ["static_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
