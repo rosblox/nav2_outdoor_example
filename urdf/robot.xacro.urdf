@@ -88,16 +88,16 @@
     <inertia ixx="0.212208" iyy="0.290082" izz="0.17327" ixy="0.067441" iyz="0.0" ixz="-0.0"/>
   </inertial>
   <visual>
-    <origin xyz="0.35 0.233285 0.0" rpy="0 0 0"/>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel_1_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="0.35 0.233285 0.0" rpy="0 0 0"/>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel_1_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -109,16 +109,16 @@
     <inertia ixx="0.212208" iyy="0.290082" izz="0.17327" ixy="-0.067441" iyz="-0.0" ixz="0.0"/>
   </inertial>
   <visual>
-    <origin xyz="0.35 -0.233285 0.0" rpy="0 0 0"/>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel_2_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="0.35 -0.233285 0.0" rpy="0 0 0"/>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel_2_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -130,16 +130,16 @@
     <inertia ixx="0.212208" iyy="0.290082" izz="0.17327" ixy="0.067441" iyz="-0.0" ixz="-0.0"/>
   </inertial>
   <visual>
-    <origin xyz="-0.35 -0.233285 0.0" rpy="0 0 0"/>
+    <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel_4_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.35 -0.233285 0.0" rpy="0 0 0"/>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel_4_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -153,14 +153,14 @@
   <visual>
     <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel_3_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel_3_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -169,28 +169,28 @@
   <origin xyz="-0.35 -0.233285 0.0" rpy="0 0 1.07079566641"/>
   <parent link="base_link"/>
   <child link="rear_right"/>
-  <axis xyz="0.5 0.866025 -0.0"/>
+  <axis xyz="1 0 0"/>
 </joint>
 
 <joint name="rear_left_joint" type="continuous">
   <origin xyz="-0.35 0.233285 0.0" rpy="0 0 -1.07079566641 "/>
   <parent link="base_link"/>
   <child link="rear_left"/>
-  <axis xyz="-0.5 0.866025 0.0"/>
+  <axis xyz="-1 0 0"/>
 </joint>
 
 <joint name="front_left_joint" type="continuous">
   <origin xyz="0.35 0.233285 0.0" rpy="0 0 -2.07079698039"/>
   <parent link="base_link"/>
   <child link="front_left"/>
-  <axis xyz="0.5 0.866025 0.0"/>
+  <axis xyz="-1 0 0"/>
 </joint>
 
 <joint name="front_right_joint" type="continuous">
   <origin xyz="0.35 -0.233285 0.0" rpy="0 0 2.07079698039"/>
   <parent link="base_link"/>
   <child link="front_right"/>
-  <axis xyz="-0.5 0.866025 -0.0"/>
+  <axis xyz="1 0 0"/>
 </joint>
 
 </robot>
