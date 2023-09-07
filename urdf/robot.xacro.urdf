@@ -25,6 +25,62 @@
   </collision>
 </link>
 
+
+
+
+<joint name="imu_joint" type="fixed">
+    <origin xyz="0 0 0.05" rpy="0.5 1.2 -1.17"/>
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+</joint>
+
+<link name="imu_link">
+    <collision>
+        <geometry>
+            <sphere radius="0.05"/>
+        </geometry>
+    </collision>
+    <visual>
+        <geometry>
+            <sphere radius="0.05"/>
+        </geometry>
+        <material name="white" />
+
+    </visual>
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 1.57"/>
+        <mass value="0.005"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
+</link>
+
+<joint name="gnss_joint" type="fixed">
+    <origin xyz="0 0 -0.05" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="gnss_link"/>
+</joint>
+
+<link name="gnss_link">
+    <collision>
+        <geometry>
+            <sphere radius="0.05"/>
+        </geometry>
+    </collision>
+    <visual>
+        <geometry>
+            <sphere radius="0.05"/>
+        </geometry>
+        <material name="black" />
+    </visual>
+    <inertial>
+        <origin xyz="0 0 0.1" rpy="0.3 1.6 -0.4"/>
+        <mass value="0.005"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
+</link>
+
+
+
 <link name="rear_right">
   <inertial>
     <origin xyz="0.029227848902287357 0.05062404177426588 0" rpy="0 0 0"/>
