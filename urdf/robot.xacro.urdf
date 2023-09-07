@@ -1,196 +1,85 @@
 <?xml version="1.0" ?>
-<robot name="diff_drive" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:include filename="$(find nav2_outdoor_example)/urdf/materials.xacro" />
-<xacro:include filename="$(find nav2_outdoor_example)/urdf/robot.gazebo" />
+  <xacro:include filename="$(find nav2_outdoor_example)/urdf/materials.xacro" />
+  <xacro:include filename="$(find nav2_outdoor_example)/urdf/robot.gazebo" />
+  <xacro:include filename="$(find nav2_outdoor_example)/urdf/wheel.xacro" />
 
-<link name="base_link">
-  <inertial>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <mass value="97.36517446475621"/>
-    <inertia ixx="8.084237" iyy="15.065847" izz="23.090003" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="blue"/>
-  </visual>
-  <collision>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="97.36517446475621"/>
+      <inertia ixx="8.084237" iyy="15.065847" izz="23.090003" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
 
+  <xacro:wheel name="front_right" xyz="0.35 -0.233285 0.0" rpy="0 0 2.07079698039" direction="1" />
+  <xacro:wheel name="rear_right" xyz="-0.35 -0.233285 0.0" rpy="0 0 1.07079566641" direction="1" />
+  <xacro:wheel name="front_left" xyz="0.35 0.233285 0.0" rpy="0 0 -2.07079698039" direction="-1" />
+  <xacro:wheel name="rear_left" xyz="-0.35 0.233285 0.0" rpy="0 0 -1.07079566641" direction="-1" />
 
-
-
-<joint name="imu_joint" type="fixed">
+  <joint name="imu_joint" type="fixed">
     <origin xyz="0 0 0.05" rpy="0.5 1.2 -1.17"/>
     <parent link="base_link"/>
     <child link="imu_link"/>
-</joint>
+  </joint>
 
-<link name="imu_link">
+  <link name="imu_link">
     <collision>
-        <geometry>
-            <sphere radius="0.05"/>
-        </geometry>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
     </collision>
     <visual>
-        <geometry>
-            <sphere radius="0.05"/>
-        </geometry>
-        <material name="white" />
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <material name="white" />
 
     </visual>
     <inertial>
-        <origin xyz="0 0 0" rpy="0 0 1.57"/>
-        <mass value="0.005"/>
-        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      <origin xyz="0 0 0" rpy="0 0 1.57"/>
+      <mass value="0.005"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
     </inertial>
-</link>
+  </link>
 
-<joint name="gnss_joint" type="fixed">
+  <joint name="gnss_joint" type="fixed">
     <origin xyz="0 0 -0.05" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="gnss_link"/>
-</joint>
+  </joint>
 
-<link name="gnss_link">
+  <link name="gnss_link">
     <collision>
-        <geometry>
-            <sphere radius="0.05"/>
-        </geometry>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
     </collision>
     <visual>
-        <geometry>
-            <sphere radius="0.05"/>
-        </geometry>
-        <material name="black" />
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <material name="black" />
     </visual>
     <inertial>
-        <origin xyz="0 0 0.1" rpy="0.3 1.6 -0.4"/>
-        <mass value="0.005"/>
-        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      <origin xyz="0 0 0.1" rpy="0.3 1.6 -0.4"/>
+      <mass value="0.005"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
     </inertial>
-</link>
-
-
-
-<link name="rear_right">
-  <inertial>
-    <origin xyz="0.029227848902287357 0.05062404177426588 0" rpy="0 0 0"/>
-    <mass value="23.230413890431347"/>
-    <inertia ixx="0.212208" iyy="0.290082" izz="0.17327" ixy="0.067441" iyz="0.0" ixz="-0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0 0 0.0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0 0 0.0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="rear_left">
-  <inertial>
-    <origin xyz="0.029227848902285802 -0.050623764868230586 0" rpy="0 0 0"/>
-    <mass value="23.230413890431347"/>
-    <inertia ixx="0.212208" iyy="0.290082" izz="0.17327" ixy="-0.067441" iyz="-0.0" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0 0 0.0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0 0 0.0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="front_left">
-  <inertial>
-    <origin xyz="-0.02922784890228497 -0.05062376486823089 0" rpy="0 0 0"/>
-    <mass value="23.230413890431347"/>
-    <inertia ixx="0.212208" iyy="0.290082" izz="0.17327" ixy="0.067441" iyz="-0.0" ixz="-0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0 0 0.0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="front_right">
-  <inertial>
-    <origin xyz="-0.0292278489022878 0.05062404177426641 0" rpy="0 0 0"/>
-    <mass value="23.230413890431347"/>
-    <inertia ixx="0.212208" iyy="0.290082" izz="0.17327" ixy="-0.067441" iyz="0.0" ixz="-0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<joint name="rear_right_joint" type="continuous">
-  <origin xyz="-0.35 -0.233285 0.0" rpy="0 0 1.07079566641"/>
-  <parent link="base_link"/>
-  <child link="rear_right"/>
-  <axis xyz="1 0 0"/>
-</joint>
-
-<joint name="rear_left_joint" type="continuous">
-  <origin xyz="-0.35 0.233285 0.0" rpy="0 0 -1.07079566641 "/>
-  <parent link="base_link"/>
-  <child link="rear_left"/>
-  <axis xyz="-1 0 0"/>
-</joint>
-
-<joint name="front_left_joint" type="continuous">
-  <origin xyz="0.35 0.233285 0.0" rpy="0 0 -2.07079698039"/>
-  <parent link="base_link"/>
-  <child link="front_left"/>
-  <axis xyz="-1 0 0"/>
-</joint>
-
-<joint name="front_right_joint" type="continuous">
-  <origin xyz="0.35 -0.233285 0.0" rpy="0 0 2.07079698039"/>
-  <parent link="base_link"/>
-  <child link="front_right"/>
-  <axis xyz="1 0 0"/>
-</joint>
+  </link>
 
 </robot>

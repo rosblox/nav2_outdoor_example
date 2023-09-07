@@ -34,9 +34,9 @@ def generate_launch_description():
     return LaunchDescription(
         [
             simulation,
-            visualization,
-            localization,
-            navigation,
+            # visualization,
+            # localization,
+            # navigation,
         ]
     )
 

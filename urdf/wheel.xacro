@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="wheel" params="name xyz rpy direction">
+
+    <link name="${name}">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="23.230413890431347"/>
+        <inertia ixx="0.212208" iyy="0.290082" izz="0.17327" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_joint" type="continuous">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <parent link="base_link"/>
+      <child link="${name}"/>
+      <axis xyz="${direction} 0 0"/>
+    </joint>
+
+  </xacro:macro>
+</robot>
