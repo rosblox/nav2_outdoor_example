@@ -21,7 +21,7 @@ def generate_launch_description():
     pkg_share = get_package_share_directory('nav2_outdoor_example')
 
 
-    xacro_file = os.path.join(pkg_share, 'urdf', 'Noodle.xacro.urdf')
+    xacro_file = os.path.join(pkg_share, 'urdf', 'robot.xacro.urdf')
     doc = xacro.parse(open(xacro_file))
     xacro.process_doc(doc)
 
@@ -41,7 +41,8 @@ def generate_launch_description():
         output='screen',
         arguments=['-string', doc.toxml(),
                    '-name', 'robot',
-                   '-allow_renaming', 'true'],
+                   '-allow_renaming', 'true',
+                   '-z', '0.4'],
     )
 
     bridge = Node(
