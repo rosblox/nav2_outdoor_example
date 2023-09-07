@@ -18,7 +18,7 @@ def generate_launch_description():
         executable='static_transform_publisher',
         name='map_transform',
         output='screen',
-        arguments = "--x 1 --y 0 --z 0 --roll 0 --pitch 0 --yaw 0 --frame-id map --child-frame-id odom".split(' '),
+        arguments = "--x -1 --y 0 --z 0 --roll 0 --pitch 0 --yaw 0 --frame-id map --child-frame-id odom".split(' '),
         )
     
     navsat_transform_node = Node(
