@@ -21,7 +21,7 @@ def generate_launch_description():
     pkg_share = get_package_share_directory('nav2_outdoor_example')
 
 
-    xacro_file = os.path.join(pkg_share, 'urdf', 'robot.xacro.urdf')
+    xacro_file = os.path.join(pkg_share, 'urdf', 'Noodle.xacro.urdf')
     doc = xacro.parse(open(xacro_file))
     xacro.process_doc(doc)
 
