@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="diff_drive" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/materials.xacro" />
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/robot.gazebo" />
