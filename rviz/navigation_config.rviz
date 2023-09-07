@@ -55,12 +55,13 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        caster:
+          Value: true
+        front_left:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        chassis_link:
+        front_right:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -75,12 +76,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        left_wheel:
+        rear_left:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_wheel:
+        rear_right:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -100,21 +101,21 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
-        caster:
+        front_left:
           Value: true
-        chassis_link:
+        front_right:
           Value: true
         gnss_link:
           Value: true
         imu_link:
           Value: true
-        left_wheel:
-          Value: true
         map:
           Value: true
         odom:
           Value: true
-        right_wheel:
+        rear_left:
+          Value: true
+        rear_right:
           Value: true
       Marker Scale: 0.30000001192092896
       Name: TF
@@ -125,17 +126,18 @@ Visualization Manager:
         map:
           odom:
             base_link:
-              chassis_link:
-                caster:
-                  {}
-                gnss_link:
-                  {}
-                imu_link:
-                  {}
-                left_wheel:
-                  {}
-                right_wheel:
-                  {}
+              front_left:
+                {}
+              front_right:
+                {}
+              gnss_link:
+                {}
+              imu_link:
+                {}
+              rear_left:
+                {}
+              rear_right:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -290,16 +292,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 15.587919235229492
+      Distance: 13.325154304504395
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.813328742980957
-        Y: -0.3356768488883972
-        Z: 1.5947011709213257
+        X: -0.22531920671463013
+        Y: 0.24834749102592468
+        Z: 0.4057903587818146
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
@@ -308,7 +310,7 @@ Visualization Manager:
       Pitch: 0.5253986716270447
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.948566436767578
+      Yaw: 1.6003828048706055
     Saved: ~
 Window Geometry:
   Displays:
