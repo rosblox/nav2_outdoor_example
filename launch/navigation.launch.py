@@ -7,6 +7,8 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
 
+from launch.launch_context import LaunchContext
+
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
@@ -15,12 +17,13 @@ from nav2_common.launch import RewrittenYaml
 def generate_launch_description():
     pkg_share = get_package_share_directory('nav2_outdoor_example')
 
+    context = LaunchContext()
 
-    # Update map file path in params file
     params_file = os.path.join(pkg_share, 'config/nav2_params.yaml')
-
+    
     param_substitutions = {
-        'yaml_filename': os.path.join(pkg_share, 'world/turtlebot3_world.yaml')
+        'yaml_filename': os.path.join(pkg_share, 'world/turtlebot3_world.yaml'),
+        'default_nav_to_pose_bt_xml': os.path.join(pkg_share, 'config/navigate_to_pose_w_replanning_and_recovery.xml'),
         }
 
     configured_params = RewrittenYaml(
@@ -29,6 +32,7 @@ def generate_launch_description():
         param_rewrites=param_substitutions,
         convert_types=True)
 
+    params_file_with_substitutions = configured_params.perform(context)
 
     # Start map server
     lifecycle_nodes = ['map_server']
@@ -56,7 +60,7 @@ def generate_launch_description():
     # Start navigation
     nav2_bringup_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(pkg_nav2_bringup, 'launch/navigation_launch.py')),
-        launch_arguments={'use_sim_time': 'True', 'params_file': params_file}.items(),
+        launch_arguments={'use_sim_time': 'True', 'params_file': params_file_with_substitutions}.items(),
     )
 
 

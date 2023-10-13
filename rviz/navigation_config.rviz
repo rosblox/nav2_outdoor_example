@@ -6,7 +6,10 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /RobotModel1
         - /TF1
+        - /TF1/Frames1
+        - /TF1/Tree1
         - /LocalCoastmap1
         - /Plan1
         - /Goal1
@@ -98,7 +101,7 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
+        All Enabled: false
         base_link:
           Value: true
         front_left:
@@ -108,7 +111,7 @@ Visualization Manager:
         gnss_link:
           Value: true
         imu_link:
-          Value: true
+          Value: false
         map:
           Value: true
         odom:
@@ -117,7 +120,7 @@ Visualization Manager:
           Value: true
         rear_right:
           Value: true
-      Marker Scale: 0.30000001192092896
+      Marker Scale: 2
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -264,6 +267,34 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /goal_pose
       Value: true
+    - Acceleration properties:
+        Acc. vector alpha: 1
+        Acc. vector color: 255; 0; 0
+        Acc. vector scale: 1
+        Derotate acceleration: true
+        Enable acceleration: false
+      Axes properties:
+        Axes scale: 1
+        Enable axes: true
+      Box properties:
+        Box alpha: 1
+        Box color: 255; 0; 0
+        Enable box: false
+        x_scale: 1
+        y_scale: 1
+        z_scale: 1
+      Class: rviz_imu_plugin/Imu
+      Enabled: false
+      Name: Imu
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /imu/data
+      Value: false
+      fixed_frame_orientation: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -292,25 +323,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 13.325154304504395
+      Distance: 16.132509231567383
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.22531920671463013
-        Y: 0.24834749102592468
-        Z: 0.4057903587818146
+        X: -0.23352976143360138
+        Y: -0.7757395505905151
+        Z: -0.8229045271873474
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5253986716270447
+      Pitch: 0.8147984743118286
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.6003828048706055
+      Yaw: 1.4448513984680176
     Saved: ~
 Window Geometry:
   Displays:
@@ -318,7 +349,7 @@ Window Geometry:
   Height: 1136
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd00000001000000000000019d00000416fc0200000001fb000000100044006900730070006c006100790073010000003d00000416000000c900ffffff000005970000041600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000001000000000000015600000416fc0200000001fb000000100044006900730070006c006100790073010000003d00000416000000c900ffffff000005de0000041600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Width: 1850
   X: 70
   Y: 27
