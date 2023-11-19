@@ -7,7 +7,7 @@
             <always_on>1</always_on>
             <update_rate>25.0</update_rate>
             <visualize>true</visualize>
-            <topic>imu</topic>
+            <topic>imu/data_raw</topic>
             <frame_id>imu_link</frame_id>
             <ignition_frame_id>imu_link</ignition_frame_id>
             <imu>
@@ -15,6 +15,18 @@
                     <localization>ENU</localization>
                 </orientation_reference_frame>
             </imu>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="imu_link">
+        <sensor name="GazeboMag" type="magnetometer">
+            <always_on>1</always_on>
+            <update_rate>25.0</update_rate>
+            <visualize>true</visualize>
+            <topic>imu/mag</topic>
+            <frame_id>imu_link</frame_id>
+            <ignition_frame_id>imu_link</ignition_frame_id>
+            <magnetometer/>
         </sensor>
     </gazebo>
 
