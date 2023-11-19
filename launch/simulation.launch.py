@@ -42,14 +42,15 @@ def generate_launch_description():
         arguments=['-string', doc.toxml(),
                    '-name', 'robot',
                    '-allow_renaming', 'true',
-                   '-z', '0.4'],
+                   '-z', '0.4', '-Y', '1.0'],
     )
 
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=['/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
-                   '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU',
+                   '/imu/data_raw@sensor_msgs/msg/Imu[gz.msgs.IMU',
+                   '/imu/mag@sensor_msgs/msg/MagneticField[gz.msgs.Magnetometer',
                    '/gps/fix@sensor_msgs/msg/NavSatFix[gz.msgs.NavSat',
                    ],
         output='screen'
