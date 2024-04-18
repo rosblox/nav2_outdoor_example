@@ -1,38 +1,55 @@
-<!--
-  This Behavior Tree replans the global path periodically at 1 Hz and it also has
-  recovery actions specific to planning / control as well as general system issues.
-  This will be continuous if a kinematically valid planner is selected.
--->
 <root main_tree_to_execute="MainTree">
   <BehaviorTree ID="MainTree">
-    <RecoveryNode number_of_retries="6" name="NavigateRecovery">
-      <PipelineSequence name="NavigateWithReplanning">
-        <RateController hz="1.0">
-          <RecoveryNode number_of_retries="1" name="ComputePathToPose">
-            <ComputePathToPose goal="{goal}" path="{path}" planner_id="GridBased"/>
-            <ClearEntireCostmap name="ClearGlobalCostmap-Context" service_name="global_costmap/clear_entirely_global_costmap"/>
-          </RecoveryNode>
-        </RateController>
-        <!-- HERE -->
-        <CanRobotRoll/>
-        <!-- Until HERE -->
-        <RecoveryNode number_of_retries="1" name="FollowPath">
-          <FollowPath path="{path}" controller_id="FollowPath"/>
-          <ClearEntireCostmap name="ClearLocalCostmap-Context" service_name="local_costmap/clear_entirely_local_costmap"/>
-        </RecoveryNode>
-      </PipelineSequence>
-      <ReactiveFallback name="RecoveryFallback">
-        <GoalUpdated/>
-        <RoundRobin name="RecoveryActions">
-          <Sequence name="ClearingActions">
-            <ClearEntireCostmap name="ClearLocalCostmap-Subtree" service_name="local_costmap/clear_entirely_local_costmap"/>
-            <ClearEntireCostmap name="ClearGlobalCostmap-Subtree" service_name="global_costmap/clear_entirely_global_costmap"/>
-          </Sequence>
-          <Spin spin_dist="1.57"/>
-          <Wait wait_duration="5"/>
-          <BackUp backup_dist="0.30" backup_speed="0.05"/>
-        </RoundRobin>
-      </ReactiveFallback>
-    </RecoveryNode>
+
+        <ReactiveSequence name="NavigateOrRoll">
+<!-- 
+          <ReactiveFallback name="Roll">
+
+            <Inverter> <CanRobotRoll server_timeout="10000"/> </Inverter>
+
+            <Sequence>
+              <Morph to="sphere" server_timeout="10000" />
+              <Wait wait_duration="150" name="Rolling Down Until I stop." server_timeout="10000" />
+            </Sequence>
+
+          </ReactiveFallback> -->
+
+          <!-- <Morph to="rover" server_timeout="10000" /> -->
+
+          <PipelineSequence name="NavigateWithReplanning">
+
+            <RateController hz="1.0">
+              <RecoveryNode number_of_retries="1" name="ComputePathToPose">
+                <ComputePathToPose goal="{goal}" path="{path}" planner_id="GridBased"/>
+                <ClearEntireCostmap name="ClearGlobalCostmap-Context" service_name="global_costmap/clear_entirely_global_costmap"/>
+              </RecoveryNode>
+            </RateController>
+
+            <FollowPath path="{path}" controller_id="FollowPath"/>
+
+          </PipelineSequence>
+
+        </ReactiveSequence>
+
   </BehaviorTree>
 </root>
+
+
+
+  <!-- <RecoveryNode number_of_retries="6" name="NavigateRecovery"> -->
+
+    <!-- TODO: Add navigation here. -->
+
+    <!-- <ReactiveFallback name="RecoveryFallback">
+      <GoalUpdated/>
+      <RoundRobin name="RecoveryActions">
+        <Sequence name="ClearingActions">
+          <ClearEntireCostmap name="ClearLocalCostmap-Subtree" service_name="local_costmap/clear_entirely_local_costmap"/>
+          <ClearEntireCostmap name="ClearGlobalCostmap-Subtree" service_name="global_costmap/clear_entirely_global_costmap"/>
+        </Sequence>
+        <Spin spin_dist="1.57"/>
+        <Wait wait_duration="5"/>
+        <BackUp backup_dist="0.30" backup_speed="0.05"/>
+      </RoundRobin>
+    </ReactiveFallback>
+  </RecoveryNode> -->
